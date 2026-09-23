@@ -114,8 +114,13 @@ async function send(){
 
     const answer = document.createElement("div");
     answer.className = "msg ai";
-    answer.style.whiteSpace = "pre-wrap";
-    answer.textContent = data.reply || "Aucune réponse.";
+    const cleanReply = (data.reply || "Aucune réponse.")
+  .replace(/\*\*(.*?)\*\*/g, "$1");
+
+answer.textContent = cleanReply;
+answer.style.whiteSpace = "pre-wrap";
+answer.style.direction = "auto";
+answer.style.textAlign = "start";
 
     chat.appendChild(answer);
     chat.scrollTop = chat.scrollHeight;
